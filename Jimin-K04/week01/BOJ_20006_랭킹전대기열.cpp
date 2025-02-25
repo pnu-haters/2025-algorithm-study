@@ -14,7 +14,7 @@ public:
 		name_ = name;
 		level_ = level;
 	}
-	// Á¤·Ä
+	// ì •ë ¬
 	bool operator<(const Player& other) const {
 		return name_ < other.name_;
 	}
@@ -23,13 +23,13 @@ public:
 
 class GameRoom {
 public:
-	int room_index; //»ı¼º¼ø¼­ ÀúÀå (1ºÎÅÍ ½ÃÀÛ)
+	int room_index; //ìƒì„±ìˆœì„œ ì €ì¥ (1ë¶€í„° ì‹œì‘)
 	int max_num_;
 	int min_level;
 	int max_level;
 	vector<Player> players;
 	
-	//¹æ ÃÊ±âÈ­ ÇÔ¼ö
+	//ë°© ì´ˆê¸°í™” í•¨ìˆ˜
 	GameRoom(int index, int max_num, Player first_player ) {
 		room_index = index;
 		max_num_ = max_num;
@@ -64,17 +64,17 @@ int main() {
 		cin >> player_level >> player_name;
 		Player p(player_name, player_level);
 
-		//°ÔÀÓ ¹æÀÌ ÇÏ³ªµµ ¾ø°Å³ª ¸ÅÄªµÇ´Â ¹æÀÌ ¾øÀ»¶§ -> »õ·Î¿î ¹æÀ» ÃÊ±âÈ­ ÇÏ±â
+		//ê²Œì„ ë°©ì´ í•˜ë‚˜ë„ ì—†ê±°ë‚˜ ë§¤ì¹­ë˜ëŠ” ë°©ì´ ì—†ì„ë•Œ -> ìƒˆë¡œìš´ ë°©ì„ ì´ˆê¸°í™” í•˜ê¸°
 		if (game_rooms.empty() || !(match_room_index = search_match_room(player_level, game_rooms))) {
 			GameRoom r(++room_index, max_num, p);
 			game_rooms.push_back(r);
 		}
-		else { //¸ÅÄªµÇ´Â ¹æÀ» Ã£À¸¸é ÇØ´ç ¹æ¿¡ ÇÃ·¹ÀÌ¾î ³Ö±â, ÀÌ¶§ ³»°¡ ÀúÀåÇÑ room index ´Â 1ºÎÅÍÁö¸¸ º¤ÅÍÀÇ ÀÎµ¦½º´Â 0ºÎÅÍ ÀÌ¹Ç·Î 1 »©ÁÖ±â
+		else { //ë§¤ì¹­ë˜ëŠ” ë°©ì„ ì°¾ìœ¼ë©´ í•´ë‹¹ ë°©ì— í”Œë ˆì´ì–´ ë„£ê¸°, ì´ë•Œ ë‚´ê°€ ì €ì¥í•œ room index ëŠ” 1ë¶€í„°ì§€ë§Œ ë²¡í„°ì˜ ì¸ë±ìŠ¤ëŠ” 0ë¶€í„° ì´ë¯€ë¡œ 1 ë¹¼ì£¼ê¸°
 			game_rooms[match_room_index - 1].players.push_back(p);
 		}
 	}
 
-	//Ãâ·Â..Á¤·Äµµ ÇØ¾ß ÇÏ³×,,
+	//ì¶œë ¥..ì •ë ¬ë„ í•´ì•¼ í•˜ë„¤,,
 	for (GameRoom game_room : game_rooms) {
 		if (game_room.players.size() == max_num) cout << "Started!\n";
 		else cout << "Waiting!\n";
@@ -91,7 +91,7 @@ int main() {
 
 int search_match_room(int player_level, vector<GameRoom> game_rooms) {
 	for (GameRoom room : game_rooms) {
-		//¹æ ÀÎ¿øÀÌ ³²¾ÆÀÖ°í, ·¹º§ÀÌ ¸Â´Â °æ¿ì -> ¹æÀÇ ÀÎµ¦½º ¹İÈ¯
+		//ë°© ì¸ì›ì´ ë‚¨ì•„ìˆê³ , ë ˆë²¨ì´ ë§ëŠ” ê²½ìš° -> ë°©ì˜ ì¸ë±ìŠ¤ ë°˜í™˜
 		if (room.players.size() < max_num && (player_level <= room.max_level) && (player_level >= room.min_level)) {
 			return room.room_index;
 		}
