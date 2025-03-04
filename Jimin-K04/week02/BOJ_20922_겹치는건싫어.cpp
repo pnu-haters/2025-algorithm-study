@@ -40,7 +40,7 @@ int main() {
 
 }
 
-// 큐를 이용한 풀이 발견! - 메모리 2812KB, 시간 16ms
+// 큐를 이용한 풀이 발견..! - 메모리 2812KB, 시간 16ms
 /*#include <iostream>
 #include <queue>
 using namespace std;
