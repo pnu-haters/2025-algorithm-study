@@ -1,3 +1,4 @@
+//row 와 col 을 반대로 받은게 문제였다..
 #include <iostream>
 #include <vector>
 #include <queue> //여거서 queue 에는 좌표값을 담는다.
