@@ -1,13 +1,13 @@
-/*È®½ÇÈ÷ ¿¬°á¸®½ºÆ®·Î ±¸ÇöÇÏ´Ï ¸Ş¸ğ¸®¼Ò¸ğ°¡ ´úÇÏ±ä ÇÏÁö¸¸ ³­ º¤ÅÍ·Î ÇÑ´Ù*/
+/*í™•ì‹¤íˆ ì¸ì ‘ë¦¬ìŠ¤íŠ¸ë¡œ êµ¬í˜„í•˜ë‹ˆ ë©”ëª¨ë¦¬ì†Œëª¨ê°€ ëœí•˜ê¸´ í•˜ì§€ë§Œ ë‚œ ì¸ì ‘í–‰ë ¬ë¡œ í•œë‹¤*/
 #include <iostream>
 #include <vector>
 #include <algorithm>
 #include <queue>
 using namespace std;
 
-int N, M, V; // N: Á¤Á¡ÀÇ ¼ö, M : °£¼±ÀÇ ¼ö, V: Å½»öÇÒ Á¤Á¡ÀÇ ¹øÈ£
+int N, M, V; // N: ì •ì ì˜ ìˆ˜, M : ê°„ì„ ì˜ ìˆ˜, V: íƒìƒ‰í•  ì •ì ì˜ ë²ˆí˜¸
 vector<bool> Visited;
-vector<vector<int>> Graph; //¼±¾ğ ¸ÕÀú
+vector<vector<int>> Graph; //ì„ ì–¸ ë¨¼ì €
 void bfs(int x);
 void dfs(int x);
 
@@ -20,36 +20,36 @@ int main() {
 	cin >> N >> M >> V;
 
 	Visited.resize(N + 1, false);
-	Graph.resize(N+1); // Å©±â°¡ N ÀÌ°í °¢ ¿ä¼Ò´Â vector int ÀÎ ÀÌÂ÷¿ø ¹è¿­ ¼±¾ğ(¹è¿­ Å©±â ÀçÇÒ´ç)(0 Á¦¿ÜÇÏ¹Ç·Î N+1)
+	Graph.resize(N+1); // í¬ê¸°ê°€ N ì´ê³  ê° ìš”ì†ŒëŠ” vector int ì¸ ì´ì°¨ì› ë°°ì—´ ì„ ì–¸(ë°°ì—´ í¬ê¸° ì¬í• ë‹¹)(0 ì œì™¸í•˜ë¯€ë¡œ N+1)
 
 	while (M--) {
 		cin >> n >> e;
 		Graph[n].push_back(e);
-		Graph[e].push_back(n);// ¾ç¹æÇâ °£¼±
+		Graph[e].push_back(n);// ì–‘ë°©í–¥ ê°„ì„ 
 	}
-	//°¢ ³ëµåº° ¿§Áö¸¦ ¿À¸§Â÷¼øÀ¸·Î Á¤·ÄÇØÁØ´Ù.
+	//ê° ë…¸ë“œë³„ ì—£ì§€ë¥¼ ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬í•´ì¤€ë‹¤.
 	for (int i = 1; i < Graph.size(); i++) {
 		sort(Graph[i].begin(), Graph[i].end());
 	}
 	dfs(V);
-	Visited.assign(N + 1, false); //º¤ÅÍÀÇ ¸ğµç °ªÀ» ´Ù½Ã false ·Î ÃÊ±âÈ­
+	Visited.assign(N + 1, false); //ë²¡í„°ì˜ ëª¨ë“  ê°’ì„ ë‹¤ì‹œ false ë¡œ ì´ˆê¸°í™”
 	cout << '\n';
 	bfs(V);
 
 }
- //Àç±ÍÇÔ¼ö ±¸Çö
+ //ì¬ê·€í•¨ìˆ˜ êµ¬í˜„
 void dfs(int x) {
 	Visited[x] = true;
 	cout << x << " ";
-	for (int i = 0; i < Graph[x].size(); i++) {//ÇØ´ç ³ëµå¿¡ ÀÎÁ¢ÇÑ ³ëµå Å©±â ¸¸Å­ ¼øÈ¸, ´Ü ¿À¸§Â÷¼øÀ¸·Î Á¤·Ä °¡Á¤
+	for (int i = 0; i < Graph[x].size(); i++) {//í•´ë‹¹ ë…¸ë“œì— ì¸ì ‘í•œ ë…¸ë“œ í¬ê¸° ë§Œí¼ ìˆœíšŒ, ë‹¨ ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬ ê°€ì •
 		int node = Graph[x][i];
-		if (!Visited[node]) dfs(node); //¹æ¹®ÇÏÁö ¾Ê¾Ò´Ù¸é ÇØ´ç ³ëµå ±íÀÌ¿ì¼± Å½»ö
+		if (!Visited[node]) dfs(node); //ë°©ë¬¸í•˜ì§€ ì•Šì•˜ë‹¤ë©´ í•´ë‹¹ ë…¸ë“œ ê¹Šì´ìš°ì„  íƒìƒ‰
 	}
 }
-//Å¥¸¦ »ç¿ëÇØ¼­ ±¸Çö
+//íë¥¼ ì‚¬ìš©í•´ì„œ êµ¬í˜„
 void bfs(int x) {
 	queue<int> q;
-	q.push(x); //Ã¹³ëµå¸¦ ¹æ¹® Ã³¸®ÇÔ
+	q.push(x); //ì²«ë…¸ë“œë¥¼ ë°©ë¬¸ ì²˜ë¦¬í•¨
 	Visited[x] = true;
 
 	while (!q.empty()) {
@@ -57,10 +57,10 @@ void bfs(int x) {
 		q.pop();
 		cout << node << " ";
 		for (int i = 0; i < Graph[node].size(); i++) {
-			int edge = Graph[node][i];
-			if (!Visited[edge]) {
-				q.push(edge);
-				Visited[edge] = true;
+			int node2 = Graph[node][i];
+			if (!Visited[node2]) {
+				q.push(node2);
+				Visited[node2] = true;
 			}
 		}
 	}
