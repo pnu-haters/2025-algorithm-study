@@ -14,7 +14,7 @@ void BFS(int subinPos,int SsubinPos){
 
     q.push(SsubinPos);// 그래프 간선을 줄이기 위해 역추적
     rec[SsubinPos] = 0;
-    while(q.front()!=subinPos){
+    while(q.front()!=subinPos){//queue가 비워질 일이 없기 때문에 조건식 이렇게 써도 전혀 문제 없음
         int num = q.front();
         q.pop();
 
@@ -30,7 +30,7 @@ void BFS(int subinPos,int SsubinPos){
           int N = num/2;
           if(rec[N]>0)continue;
           rec[N]=rec[num]+1;
-          q.push(N)
+          q.push(N);
 ;
         }
 
