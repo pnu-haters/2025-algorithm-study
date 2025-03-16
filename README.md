@@ -1,4 +1,4 @@
-# 2025 study
+# 2025 algorithm study
 
 <table>
   <tr>
