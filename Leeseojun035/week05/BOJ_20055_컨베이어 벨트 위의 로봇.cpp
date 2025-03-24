@@ -4,6 +4,7 @@ using namespace std;
 
 int main()
 {
+    
     int step = 1;          // 단계 카운트
     int i = 0;             // 회전 인덱스
     int breakdown = 0;     // 내구도가 0인 칸의 수
